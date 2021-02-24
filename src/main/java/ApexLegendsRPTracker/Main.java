@@ -30,11 +30,14 @@ public class Main extends JFrame {
 	private JLabel labelGetKillPoint;
 	private JLabel labelResult;
 	private JButton btnCalc;
+	@SuppressWarnings("unused")
+	private final String cacheFilePath = new java.io.File(".").getAbsolutePath();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
