@@ -20,8 +20,8 @@ public class Library {
 	}
 
 	//マッチで獲得したRPを計算し、最終的な獲得RPのみを返します
-	public static int calcRP(int currentRP, int Place, int killCount, int assistCount, boolean isLossForgivenessActive, boolean isAbandoned) {
-		return calcRPWithBreakdown(currentRP, Place, killCount, assistCount, isLossForgivenessActive, isAbandoned)[5];
+	public static int calcRP(int currentRP, int Place, int killCount, int assistCount, boolean isAbandoned) {
+		return calcRPWithBreakdown(currentRP, Place, killCount, assistCount, isAbandoned)[5];
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class Library {
 	 * @param isAbandoned　マッチ放棄の有無をBooleanで格納します
 	 * @return　[0]順位ポイント[1]キルポイント（アシスト込み）[2]獲得RP（降格保護なし）[3]マッチ放棄剥奪[4]降格保護[5]最終獲得RP
 	 */
-	public static int[] calcRPWithBreakdown(int currentRP, int Place, int killCount, int assistCount, boolean isLossForgivenessActive, boolean isAbandoned) {
+	public static int[] calcRPWithBreakdown(int currentRP, int Place, int killCount, int assistCount, boolean isAbandoned) {
 		int res[] = {0,0,0,0,0,0};
 		int placePoint = getPlaceRP(Place);
 		int killPoint;
@@ -54,8 +54,6 @@ public class Library {
 		gainRP = placePoint + killPoint + entryRP + matchAbandoned;
 		if((currentRP + gainRP) < getNearestRP(currentRP))
 			downProtection = getNearestRP(currentRP) - (currentRP + gainRP);
-		if(isLossForgivenessActive && gainRP < 0)
-			gainRP = 0;
 		res[0] = placePoint;
 		res[1] = killPoint;
 		res[2] = gainRP;

@@ -29,7 +29,6 @@ public class Main extends JFrame {
 	private JLabel labelGetPlacePoint;
 	private JLabel labelGetKillPoint;
 	private JLabel labelResult;
-	private JCheckBox chkLossForgiveness;
 	private JButton btnCalc;
 
 	/**
@@ -124,10 +123,6 @@ public class Main extends JFrame {
 		labelResult.setBounds(47, 251, 321, 16);
 		contentPane.add(labelResult);
 
-		chkLossForgiveness = new JCheckBox("降格保護");
-		chkLossForgiveness.setBounds(444, 171, 112, 24);
-		contentPane.add(chkLossForgiveness);
-
 		btnCalc = new JButton("計算");
 		btnCalc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,7 +131,7 @@ public class Main extends JFrame {
 				int killCount = Integer.parseInt(fieldKillCount.getText());
 				int assistCount = Integer.parseInt(fieldAssistCount.getText());
 				int count = killCount + assistCount;
-				int result[] = Library.calcRPWithBreakdown(currentRP, matchPlace, killCount, assistCount, chkLossForgiveness.isSelected(), chkAbandoned.isSelected());
+				int result[] = Library.calcRPWithBreakdown(currentRP, matchPlace, killCount, assistCount, chkAbandoned.isSelected());
 				int modifiedRP = currentRP + result[5];
 				labelMatchInfo.setText("マッチ順位：" + matchPlace + "    キル/アシスト合計：" + count);
 				labelGetPlacePoint.setText("順位点：" + result[0]);
